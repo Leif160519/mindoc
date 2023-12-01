@@ -171,7 +171,7 @@ func (m *Member) ldapLogin(account string, password string) (*Member, error) {
         m.Description = (searchResult.Entries[0].GetAttributeValue("company") + "-" + searchResult.Entries[0].GetAttributeValue("department") + "-" + searchResult.Entries[0].GetAttributeValue("description"))
         m.Phone = searchResult.Entries[0].GetAttributeValue("mobile")
         m.AuthMethod = "ldap"
-        m.Avatar = "/static/images/headimgurl.jpg"
+        m.Avatar = "/static/images/middle.gif"
         m.Role = conf.SystemRole(web.AppConfig.DefaultInt("ldap_user_role", 2))
         m.CreateTime = time.Now()
 
@@ -241,7 +241,7 @@ func (m *Member) httpLogin(account, password string) (*Member, error) {
         if avatar, ok := result["avater"]; ok && avatar != "" {
             member.Avatar = avatar.(string)
         } else {
-            member.Avatar = conf.URLForWithCdnImage("/static/images/headimgurl.jpg")
+            member.Avatar = conf.URLForWithCdnImage("/static/images/middle.gif")
         }
         if realName, ok := result["real_name"]; ok && realName != "" {
             member.RealName = realName.(string)
